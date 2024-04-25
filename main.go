@@ -73,7 +73,7 @@ func addAlbum(alb Album) (int64, error) {
 }
 
 // editAlbum update the specified album to the database,
-// returning the album ID of the updated entry
+// returning the row affected of the query
 func editAlbum(id int64, alb Album) (int64, error) {
 	result, err := db.Exec("UPDATE album SET title=?, artist=?, price=? WHERE id=?", alb.Title, alb.Artist, alb.Price, id)
 	if err != nil {
@@ -87,7 +87,7 @@ func editAlbum(id int64, alb Album) (int64, error) {
 }
 
 // deleteAlbum delete the specified album  with given id from the database,
-// returning the album ID of the deleted entry
+// returning the row affected from deletion
 func deleteAlbum(id int64) (int64, error) {
 	result, err := db.Exec("DELETE FROM album WHERE id=?", id)
 
